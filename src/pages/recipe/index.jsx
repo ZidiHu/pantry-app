@@ -28,6 +28,12 @@ const RecipeList = props => {
     setIsModalVisible(false);
   };
 
+  const deleteRecipe = (key) => {
+    console.log('delete', key)
+    const dataSource = [...recipeList];
+    setRecipeList(dataSource.filter((item) => item.key !== key))
+  };
+
   const cook = (key) => {
     console.log('cook', key)
   }
@@ -38,19 +44,19 @@ const RecipeList = props => {
         {mockRecipe.map((recipe) => (
           <Panel header={recipe.recipeName} key={recipe.key}>
             <List
-              size="small"
+              size='small'
               bordered
               dataSource={recipe.ingredients}
               renderItem={item =>
                 <List.Item>{item.ingredientName} {item.ingredientQuality}</List.Item>
               }
             />
-            <Button type="primary" onClick={() => console.log('cooking', recipe.key)}>Cook</Button>
+            <Button type='primary' onClick={() => console.log('cooking', recipe.key)}>Cook</Button>
           </Panel>
         ))
         }
       </Collapse > */}
-      <Button type="primary" onClick={showAddRecipeModal}>Add a recipe</Button>
+      <Button type='primary' onClick={showAddRecipeModal}>Add a recipe</Button>
       <List
         grid={{ gutter: 16, lg: 3, md: 2, sm: 1 }}
         dataSource={recipeList}
@@ -66,7 +72,9 @@ const RecipeList = props => {
               ))}
               <strong>{item.method}</strong>
               <br />
-              <Button type="primary" onClick={() => console.log('rowkey', item.key)}>Cook</Button>
+              {/* <Button onClick={deleteRecipe(item.key)}>Delete</Button> */}
+              <Button onClick={() => console.log('rowkey', item.key)}>Delete</Button>
+              <Button type='primary' onClick={() => console.log('rowkey', item.key)}>Cook</Button>
             </Card>
           </List.Item>
         )}
