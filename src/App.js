@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Ingredient from '../src/pages/ingredient/index'
 import RecipeList from '../src/pages/recipe/index'
+import CookHistory from '../src/pages/cookHistory/index'
 
 export default function App() {
   return (
@@ -47,12 +48,3 @@ function Home() {
     </div>
   );
 }
-
-function CookHistory() {
-  return (
-    <div>
-      <h2>Cook History</h2>
-    </div>
-  );
-}
-
