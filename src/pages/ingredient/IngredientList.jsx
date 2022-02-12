@@ -1,20 +1,7 @@
 import React, { useState } from 'react';
-import { Table, Button, Popconfirm, Form, Modal } from 'antd';
+import { Table, Button, Popconfirm } from 'antd';
 import mockIngredients from '../../mock/ingredient'
 import AddIngredientModal from '../ingredient/AddIngredientModal'
-
-const EditableContext = React.createContext(null);
-
-const EditableRow = ({ index, ...props }) => {
-  const [form] = Form.useForm();
-  return (
-    <Form form={form} component={false}>
-      <EditableContext.Provider value={form}>
-        <tr {...props} />
-      </EditableContext.Provider>
-    </Form>
-  );
-};
 
 const IngredientList = props => {
   const [data, setData] = useState(mockIngredients)
@@ -22,6 +9,8 @@ const IngredientList = props => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newName, setNewName] = useState()
   const [newQuality, setNewQuality] = useState()
+  const [showNameAlert, setShowNameAlert] = useState(false)
+  const [showQualityAlert, setShowQualityAlert] = useState(false)
 
   const columns = [
     {
@@ -49,31 +38,32 @@ const IngredientList = props => {
     setData(dataSource.filter((item) => item.key !== key))
   };
 
-  const handleAdd = () => {
+  const showAddIngredModal = () => {
     setIsModalVisible(true);
   };
 
-  const components = {
-    body: {
-      row: EditableRow,
-    },
-  };
-
-  const handleOk = () => {
-    const newData = {
-      key: count,
-      name: newName,
-      quality: newQuality
-    };
-    setData([...data, newData])
-    setCount(count + 1)
-    setIsModalVisible(false);
-    setNewName(null)
-    setNewQuality(null)
+  const handleAdd = () => {
+    if (newName && newQuality) {
+      const newData = {
+        key: count,
+        name: newName,
+        quality: newQuality
+      };
+      setData([...data, newData])
+      setCount(count + 1)
+      setIsModalVisible(false);
+      setNewName(null)
+      setNewQuality(null)
+    } else {
+      if (!newName) { setShowNameAlert(true) }
+      if (!newQuality) { setShowQualityAlert(true) }
+    }
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    setShowNameAlert(false)
+    setShowQualityAlert(false)
   };
 
   const changeName = (e) => {
@@ -87,7 +77,7 @@ const IngredientList = props => {
   return (
     <div>
       <Button
-        onClick={handleAdd}
+        onClick={showAddIngredModal}
         type="primary"
         style={{
           marginBottom: 16,
@@ -96,7 +86,6 @@ const IngredientList = props => {
         Add an ingredient
       </Button>
       <Table
-        components={components}
         bordered
         dataSource={data}
         columns={columns}
@@ -107,7 +96,9 @@ const IngredientList = props => {
         isModalVisible={isModalVisible}
         newName={newName}
         newQuality={newQuality}
-        handleOk={handleOk}
+        showNameAlert={showNameAlert}
+        showQualityAlert={showQualityAlert}
+        handleAdd={handleAdd}
         handleCancel={handleCancel}
         changeName={changeName}
         changeQuality={changeQuality}
