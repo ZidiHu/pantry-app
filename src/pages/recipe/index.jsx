@@ -64,21 +64,41 @@ const RecipeList = props => {
           <List.Item>
             <Card title={item.recipeName}>
               {item.ingredients.map((ingredients) => (
-                <>
+                <div key={ingredients.ingredientName}>
                   <p className='d-inline'>{ingredients.ingredientName}</p>
                   <p className='d-inline'>{ingredients.ingredientQuality}</p>
                   <br />
-                </>
+                </div>
               ))}
               <strong>{item.method}</strong>
               <br />
-              {/* <Button onClick={deleteRecipe(item.key)}>Delete</Button> */}
-              <Button onClick={() => console.log('rowkey', item.key)}>Delete</Button>
-              <Button type='primary' onClick={() => console.log('rowkey', item.key)}>Cook</Button>
+              <Button onClick={() => deleteRecipe(item.key)}>Delete</Button>
+              <Button type='primary' onClick={() => cook(item.key)}>Cook</Button>
             </Card>
           </List.Item>
         )}
       />
+
+      {/* {
+        recipeList.map((recipe) => (
+          <div key={recipe.key}>
+            <Card title={recipe.recipeName} >
+              {recipe.ingredients.map((ingredients) => (
+                <div key={ingredients.ingredientName}>
+                  <p className='d-inline'>{ingredients.ingredientName}</p>
+                  <p className='d-inline'>{ingredients.ingredientQuality}</p>
+                  <br />
+                </div>
+              ))}
+              <strong>{recipe.method}</strong>
+              <br />
+              <Button onClick={() => deleteRecipe(recipe.key)}>Delete</Button>
+              <Button type='primary' onClick={() => console.log('rowkey', recipe.key)}>Cook</Button>
+            </Card>
+          </div>
+        ))
+      } */}
+
       <AddRecipeModal
         isModalVisible={isModalVisible}
         handleCancel={handleCancel}
