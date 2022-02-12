@@ -1,6 +1,6 @@
 const mockRecipe = [
   {
-    key: 1,
+    key: 0,
     recipeName: 'Recipe 1',
     method: 'steam',
     ingredients: [
@@ -19,7 +19,7 @@ const mockRecipe = [
     ]
   },
   {
-    key: 2,
+    key: 1,
     recipeName: 'Recipe 2',
     method: 'steam',
     ingredients: [
@@ -38,7 +38,7 @@ const mockRecipe = [
     ]
   },
   {
-    key: 3,
+    key: 2,
     recipeName: 'Recipe 3',
     method: 'steam',
     ingredients: [

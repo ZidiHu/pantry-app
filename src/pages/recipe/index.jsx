@@ -6,6 +6,8 @@ import AddRecipeModal from './AddRecipeModal'
 const { Panel } = Collapse;
 
 const RecipeList = props => {
+  const [recipeList, setRecipeList] = useState(mockRecipe)
+  const [count, setCount] = useState(3)
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showAddRecipeModal = () => {
@@ -17,7 +19,12 @@ const RecipeList = props => {
   };
 
   const addRecipe = values => {
-    console.log('Received values of form:', values);
+    const newDate = {
+      key: count,
+      ...values
+    }
+    setRecipeList([...recipeList, newDate])
+    setCount(count + 1)
     setIsModalVisible(false);
   };
 
@@ -46,7 +53,7 @@ const RecipeList = props => {
       <Button type="primary" onClick={showAddRecipeModal}>Add a recipe</Button>
       <List
         grid={{ gutter: 16, lg: 3, md: 2, sm: 1 }}
-        dataSource={mockRecipe}
+        dataSource={recipeList}
         renderItem={item => (
           <List.Item>
             <Card title={item.recipeName}>
