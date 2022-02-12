@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
-import { Collapse, Button, List, Card } from 'antd';
+import React, { useState } from 'react'
+import { Collapse, Button, List, Card } from 'antd'
 import mockRecipe from '../../mock/recipe'
+import AddRecipeModal from './AddRecipeModal'
 
 const { Panel } = Collapse;
 
 const RecipeList = props => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showAddRecipeModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const addRecipe = values => {
+    console.log('Received values of form:', values);
+    setIsModalVisible(false);
+  };
 
   const cook = (key) => {
     console.log('cook', key)
@@ -28,6 +43,7 @@ const RecipeList = props => {
         ))
         }
       </Collapse > */}
+      <Button type="primary" onClick={showAddRecipeModal}>Add a recipe</Button>
       <List
         grid={{ gutter: 16, lg: 3, md: 2, sm: 1 }}
         dataSource={mockRecipe}
@@ -38,13 +54,20 @@ const RecipeList = props => {
                 <>
                   <p className='d-inline'>{ingredients.ingredientName}</p>
                   <p className='d-inline'>{ingredients.ingredientQuality}</p>
-                  <br/>
+                  <br />
                 </>
               ))}
+              <strong>{item.method}</strong>
+              <br />
               <Button type="primary" onClick={() => console.log('rowkey', item.key)}>Cook</Button>
             </Card>
           </List.Item>
         )}
+      />
+      <AddRecipeModal
+        isModalVisible={isModalVisible}
+        handleCancel={handleCancel}
+        addRecipe={addRecipe}
       />
     </>
   )
