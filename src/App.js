@@ -6,6 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import Ingredient from '../src/pages/ingredient/index'
+import RecipeList from '../src/pages/recipe/index'
 
 export default function App() {
   return (
@@ -31,7 +32,7 @@ export default function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/ingredient" element={<Ingredient />} />
-          <Route path="/recipe" element={<Recipes />} />
+          <Route path="/recipe" element={<RecipeList />} />
           <Route path="/cook-history" element={<CookHistory />} />
         </Routes>
       </div>
@@ -43,14 +44,6 @@ function Home() {
   return (
     <div>
       <h2>Home</h2>
-    </div>
-  );
-}
-
-function Recipes() {
-  return (
-    <div>
-      <h2>Recipes</h2>
     </div>
   );
 }
