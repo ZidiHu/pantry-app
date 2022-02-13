@@ -8,10 +8,7 @@ const Toolbar = () => {
     <div className='container'>
       <ul className='nav'>
         <li className='nav-item' >
-          <NavLink to='/' className='nav-link'>Home</NavLink>
-        </li>
-        <li className='nav-item' >
-          <NavLink to='/ingredient' className='nav-link'>Ingredient</NavLink>
+          <NavLink to='/' className='nav-link'>Ingredients</NavLink>
         </li>
         <li className='nav-item' >
           <NavLink to='/recipe' className='nav-link'>Recipes</NavLink>

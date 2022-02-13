@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, List, Card } from 'antd'
+import { Button, Popconfirm, Card } from 'antd'
 import mockRecipe from '../../mock/recipe'
 import AddRecipeModal from './AddRecipeModal'
 
@@ -58,8 +58,10 @@ const RecipeList = props => {
               </div>
               <strong>Method</strong>
               <p>{recipe.method}</p>
-              <Button onClick={() => deleteRecipe(recipe.key)} className='me-2'>Delete</Button>
-              <Button type='primary' onClick={() => handleCook(recipe.key)}>Cook</Button>
+              <Popconfirm title="Sure to delete?" onConfirm={() => deleteRecipe(recipe.key)}>
+                <Button className='me-2 mt-2'>Delete</Button>
+              </Popconfirm>
+              <Button className='mt-2' type='primary' onClick={() => handleCook(recipe.key)}>Cook</Button>
             </Card>
           </div>
         ))}

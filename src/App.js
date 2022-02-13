@@ -57,20 +57,11 @@ const App = () => {
       <hr />
 
       <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route path='/ingredient' element={<Ingredient ingredientList={ingredientList} />} />
+        <Route path='/' element={<Ingredient ingredientList={ingredientList} />} />
         <Route path='/recipe' element={<RecipeList handleCook={handleCook} />} />
         <Route path='/cook-history' element={<CookHistory cookHistory={cookHistory} />} />
       </Routes>
     </Router>
-  );
-}
-
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
   );
 }
 
