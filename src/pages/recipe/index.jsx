@@ -39,7 +39,7 @@ const RecipeList = props => {
   }
 
   return (
-    <>
+    <div className='container'>
       {/* <Collapse bordered={false} defaultActiveKey={[1]}>
         {mockRecipe.map((recipe) => (
           <Panel header={recipe.recipeName} key={recipe.key}>
@@ -57,7 +57,7 @@ const RecipeList = props => {
         }
       </Collapse > */}
       <Button type='primary' onClick={showAddRecipeModal}>Add a recipe</Button>
-      <List
+      {/* <List
         grid={{ gutter: 16, lg: 3, md: 2, sm: 1 }}
         dataSource={recipeList}
         renderItem={item => (
@@ -77,11 +77,11 @@ const RecipeList = props => {
             </Card>
           </List.Item>
         )}
-      />
+      /> */}
 
-      {/* {
-        recipeList.map((recipe) => (
-          <div key={recipe.key}>
+      <div className='row row-cols-md-3 row-cols-sm-1'>
+        {recipeList.map((recipe) => (
+          <div key={recipe.key} className='col col-sm-12'>
             <Card title={recipe.recipeName} >
               {recipe.ingredients.map((ingredients) => (
                 <div key={ingredients.ingredientName}>
@@ -93,18 +93,18 @@ const RecipeList = props => {
               <strong>{recipe.method}</strong>
               <br />
               <Button onClick={() => deleteRecipe(recipe.key)}>Delete</Button>
-              <Button type='primary' onClick={() => console.log('rowkey', recipe.key)}>Cook</Button>
+              <Button type='primary' onClick={() => cook(recipe.key)}>Cook</Button>
             </Card>
           </div>
-        ))
-      } */}
+        ))}
+      </div>
 
       <AddRecipeModal
         isModalVisible={isModalVisible}
         handleCancel={handleCancel}
         addRecipe={addRecipe}
       />
-    </>
+    </div>
   )
 }
 
