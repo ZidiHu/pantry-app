@@ -36,43 +36,29 @@ const RecipeList = props => {
 
   return (
     <div className='container'>
-      <Button type='primary' onClick={showAddRecipeModal}>Add a recipe</Button>
-      {/* <List
-        grid={{ gutter: 16, lg: 3, md: 2, sm: 1 }}
-        dataSource={recipeList}
-        renderItem={item => (
-          <List.Item>
-            <Card title={item.recipeName}>
-              {item.ingredients.map((ingredients) => (
-                <div key={ingredients.ingredientName}>
-                  <p className='d-inline'>{ingredients.ingredientName}</p>
-                  <p className='d-inline'>{ingredients.ingredientQuality}</p>
-                  <br />
-                </div>
-              ))}
-              <strong>{item.method}</strong>
-              <br />
-              <Button onClick={() => deleteRecipe(item.key)}>Delete</Button>
-              <Button type='primary' onClick={() => cook(item.key)}>Cook</Button>
-            </Card>
-          </List.Item>
-        )}
-      /> */}
-
+      <Button
+        type='primary'
+        onClick={showAddRecipeModal}
+        style={{ marginBottom: 20 }}
+      >
+        Add a recipe</Button>
       <div className='row row-cols-md-3 row-cols-sm-1'>
         {recipeList.map((recipe) => (
           <div key={recipe.key} className='col col-sm-12'>
             <Card title={recipe.recipeName} >
-              {recipe.ingredients.map((ingredients) => (
-                <div key={ingredients.ingredientName}>
-                  <p className='d-inline'>{ingredients.ingredientName}</p>
-                  <p className='d-inline'>{ingredients.ingredientQuality}</p>
-                  <br />
-                </div>
-              ))}
-              <strong>{recipe.method}</strong>
-              <br />
-              <Button onClick={() => deleteRecipe(recipe.key)}>Delete</Button>
+              <strong>Ingredients</strong>
+              <div className='pb-3'>
+                {recipe.ingredients.map((ingredients) => (
+                  <div key={ingredients.ingredientName}>
+                    <p className='d-inline me-2'>{ingredients.ingredientName}</p>
+                    <p className='d-inline'>{ingredients.ingredientQuality}</p>
+                    <br />
+                  </div>
+                ))}
+              </div>
+              <strong>Method</strong>
+              <p>{recipe.method}</p>
+              <Button onClick={() => deleteRecipe(recipe.key)} className='me-2'>Delete</Button>
               <Button type='primary' onClick={() => handleCook(recipe.key)}>Cook</Button>
             </Card>
           </div>

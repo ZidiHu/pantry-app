@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Table, Button, Popconfirm } from 'antd';
-import mockIngredients from '../../mock/ingredient'
 import AddIngredientModal from './AddIngredientModal'
+import './index.css'
 
 const Ingredient = props => {
   const { ingredientList } = props
@@ -29,7 +29,7 @@ const Ingredient = props => {
       render: (_, record) =>
         data.length >= 1 ? (
           <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-            <a>Delete</a>
+            <a style={{ color: '#1890ff' }}>Delete</a>
           </Popconfirm>
         ) : null,
     },
@@ -79,11 +79,9 @@ const Ingredient = props => {
   return (
     <div className='container'>
       <Button
-        onClick={showAddIngredModal}
         type="primary"
-        style={{
-          marginBottom: 16,
-        }}
+        onClick={showAddIngredModal}
+        style={{ marginBottom: 20 }}
       >
         Add an ingredient
       </Button>

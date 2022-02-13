@@ -17,12 +17,12 @@ const AddIngredientModal = props => {
 
   return (
     <Modal title="Add an ingredient" visible={isModalVisible} onOk={handleAdd} onCancel={handleCancel}>
-      <p>Name</p>
+      <p className='mb-1'>Name</p>
       <Input placeholder="Please enter name" onChange={changeName} value={newName} />
-      {showNameAlert && <p className='warning'>Please enter name</p>}
-      <p>Quality</p>
+      {showNameAlert && <p className='warning mb-0'>Please enter name</p>}
+      <p className='pt-3 mb-1'>Quality</p>
       <InputNumber onChange={changeQuality} value={newQuality} />
-      {showQualityAlert && <p className='warning'>Please enter quality</p>}
+      {showQualityAlert && <p className='warning mb-0'>Please enter quality</p>}
     </Modal>
   )
 }

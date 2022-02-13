@@ -11,7 +11,7 @@ const AddRecipeModal = props => {
   } = props
 
   return (
-    <Modal title='Add a recipe' visible={isModalVisible} footer={null}>
+    <Modal title='Add a recipe' visible={isModalVisible} footer={null} onCancel={handleCancel}>
       <Form
         name='add_recipe'
         onFinish={addRecipe}
@@ -75,7 +75,7 @@ const AddRecipeModal = props => {
           )}
         </Form.List>
         <Form.Item>
-          <Button onClick={handleCancel}>
+          <Button onClick={handleCancel} className='me-2'>
             Cancel
           </Button>
           <Button type='primary' htmlType='submit'>
