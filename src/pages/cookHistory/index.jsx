@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import { Collapse, Button, List, Card } from 'antd'
-import mockCookHistory from '../../mock/cookHistory'
+import { Collapse, List } from 'antd'
 
 const { Panel } = Collapse;
 
 const CookHistory = props => {
+  const { cookHistory } = props
 
   return (
-    <>
+    <div className='container'>
       <h3>Cook History</h3>
-      <Collapse bordered={false}>
-        {mockCookHistory.map((history) => (
+      <Collapse>
+        {cookHistory.map((history) => (
           <Panel header={history.recipeName} key={history.key} extra={<p>{history.cookDate}</p>}>
             <strong>Used Ingredients</strong>
             <List
@@ -25,7 +25,7 @@ const CookHistory = props => {
         ))
         }
       </Collapse >
-    </>
+    </div>
   )
 }
 

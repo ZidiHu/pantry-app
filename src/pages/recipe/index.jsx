@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { Collapse, Button, List, Card } from 'antd'
+import { Button, List, Card } from 'antd'
 import mockRecipe from '../../mock/recipe'
 import AddRecipeModal from './AddRecipeModal'
 
-const { Panel } = Collapse;
-
 const RecipeList = props => {
+  const { handleCook } = props
+
   const [recipeList, setRecipeList] = useState(mockRecipe)
   const [count, setCount] = useState(3)
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -34,28 +34,8 @@ const RecipeList = props => {
     setRecipeList(dataSource.filter((item) => item.key !== key))
   };
 
-  const cook = (key) => {
-    console.log('cook', key)
-  }
-
   return (
     <div className='container'>
-      {/* <Collapse bordered={false} defaultActiveKey={[1]}>
-        {mockRecipe.map((recipe) => (
-          <Panel header={recipe.recipeName} key={recipe.key}>
-            <List
-              size='small'
-              bordered
-              dataSource={recipe.ingredients}
-              renderItem={item =>
-                <List.Item>{item.ingredientName} {item.ingredientQuality}</List.Item>
-              }
-            />
-            <Button type='primary' onClick={() => console.log('cooking', recipe.key)}>Cook</Button>
-          </Panel>
-        ))
-        }
-      </Collapse > */}
       <Button type='primary' onClick={showAddRecipeModal}>Add a recipe</Button>
       {/* <List
         grid={{ gutter: 16, lg: 3, md: 2, sm: 1 }}
@@ -93,7 +73,7 @@ const RecipeList = props => {
               <strong>{recipe.method}</strong>
               <br />
               <Button onClick={() => deleteRecipe(recipe.key)}>Delete</Button>
-              <Button type='primary' onClick={() => cook(recipe.key)}>Cook</Button>
+              <Button type='primary' onClick={() => handleCook(recipe.key)}>Cook</Button>
             </Card>
           </div>
         ))}
