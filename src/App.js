@@ -6,6 +6,7 @@ import {
   Link
 } from 'react-router-dom';
 import moment from 'moment'
+import Toolbar from './components/Toolbar'
 import Ingredient from '../src/pages/ingredient/index'
 import RecipeList from '../src/pages/recipe/index'
 import CookHistory from '../src/pages/cookHistory/index'
@@ -51,31 +52,16 @@ const App = () => {
 
   return (
     <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to='/'>Home</Link>
-          </li>
-          <li>
-            <Link to='/ingredient'>Ingredient</Link>
-          </li>
-          <li>
-            <Link to='/recipe'>Recipes</Link>
-          </li>
-          <li>
-            <Link to='/cook-history'>Cook History</Link>
-          </li>
-        </ul>
+      <Toolbar />
 
-        <hr />
+      <hr />
 
-        <Routes>
-          <Route exact path='/' element={<Home />} />
-          <Route path='/ingredient' element={<Ingredient ingredientList={ingredientList} />} />
-          <Route path='/recipe' element={<RecipeList handleCook={handleCook} />} />
-          <Route path='/cook-history' element={<CookHistory cookHistory={cookHistory} />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route exact path='/' element={<Home />} />
+        <Route path='/ingredient' element={<Ingredient ingredientList={ingredientList} />} />
+        <Route path='/recipe' element={<RecipeList handleCook={handleCook} />} />
+        <Route path='/cook-history' element={<CookHistory cookHistory={cookHistory} />} />
+      </Routes>
     </Router>
   );
 }
