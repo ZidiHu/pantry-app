@@ -4,7 +4,9 @@ import mockIngredients from '../../mock/ingredient'
 import AddIngredientModal from './AddIngredientModal'
 
 const Ingredient = props => {
-  const [data, setData] = useState(mockIngredients)
+  const { ingredientList } = props
+
+  const [data, setData] = useState(ingredientList)
   const [count, setCount] = useState(3)
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newName, setNewName] = useState()
@@ -22,7 +24,7 @@ const Ingredient = props => {
       dataIndex: 'quality'
     },
     {
-      title: 'operation',
+      title: '',
       dataIndex: 'operation',
       render: (_, record) =>
         data.length >= 1 ? (
@@ -75,7 +77,7 @@ const Ingredient = props => {
   }
 
   return (
-    <div>
+    <div className='container'>
       <Button
         onClick={showAddIngredModal}
         type="primary"
